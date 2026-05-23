@@ -78,16 +78,16 @@ repositories {
 }
 
 dependencies {
-    //compile "mcp.mobius.waila:Waila:${waila_version}_${minecraft_version}:dev"
+    compile "mcp.mobius.waila:api-waila:1.5.17"
 	compile "codechicken:CodeChickenLib:${minecraft_version}-${ccl_version}:dev"
 	compile "codechicken:CodeChickenCore:${minecraft_version}-${ccc_version}:dev"
 	compile "codechicken:NotEnoughItems:${minecraft_version}-${nei_version}:dev"
     compile "codechicken:ForgeMultipart:${minecraft_version}-${fmp_version}:dev"
     //compile "com.pahimar.ee3:EquivalentExchange3:1.7.10-0.3.505:dev"
 
-    compile "org.apache.commons:commons-lang3:3.4"
-    compile "org.apache.logging.log4j:log4j-api:2.11.2"
-    compile "org.apache.logging.log4j:log4j-core:2.11.2"
+    compile "org.apache.commons:commons-lang3:3.1"
+    compile "org.apache.logging.log4j:log4j-api:2.0-beta9"
+    compile "org.apache.logging.log4j:log4j-core:2.0-beta9"
 
     shade ("team.chisel.ctmlib:CTMLib:${ctmlib_version}") {
         transitive = false
