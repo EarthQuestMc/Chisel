@@ -2,8 +2,8 @@ buildscript {
     repositories {
         mavenCentral()
         maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            name = "earthQuestForge"
+            url = uri("https://maven.earthquest.fr/forge")
         }
         maven {
             name = "sonatype"
@@ -11,7 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'com.anatawa12.forge:ForgeGradle:1.2-1.1.+'
         classpath 'org.ajoberstar:gradle-git:0.10.1'
     }
 }
@@ -71,6 +71,10 @@ repositories {
         name 'Chisel Repo'
         url "http://maven.tterrag.com/"
     }
+    maven {
+        name "earthquestMavenLib"
+        url "https://maven.earthquest.fr/lib"
+    }
 }
 
 dependencies {
@@ -79,8 +83,12 @@ dependencies {
 	compile "codechicken:CodeChickenCore:${minecraft_version}-${ccc_version}:dev"
 	compile "codechicken:NotEnoughItems:${minecraft_version}-${nei_version}:dev"
     compile "codechicken:ForgeMultipart:${minecraft_version}-${fmp_version}:dev"
-    compile "com.pahimar.ee3:EquivalentExchange3:1.7.10-0.3.505:dev"
-    
+    //compile "com.pahimar.ee3:EquivalentExchange3:1.7.10-0.3.505:dev"
+
+    compile "org.apache.commons:commons-lang3:3.4"
+    compile "org.apache.logging.log4j:log4j-api:2.11.2"
+    compile "org.apache.logging.log4j:log4j-core:2.11.2"
+
     shade ("team.chisel.ctmlib:CTMLib:${ctmlib_version}") {
         transitive = false
     }

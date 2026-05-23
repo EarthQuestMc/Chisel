@@ -13,7 +13,7 @@ import team.chisel.utils.RecipeUtil;
 import com.cricketcraft.chisel.api.carving.ICarvingGroup;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 import com.google.common.collect.Maps;
-import com.pahimar.ee3.api.exchange.RecipeRegistryProxy;
+//import com.pahimar.ee3.api.exchange.RecipeRegistryProxy;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -83,9 +83,9 @@ public class Compatibility {
 		addSupport("Botania", "endStoneBrick", "end_stone", 0, 0);
 		addSupport("Botania", "endStoneBrick", "end_stone", 1, 0);
 
-		if (Loader.isModLoaded("EE3")) {
-			loadEE3Values();
-		}
+		//if (Loader.isModLoaded("EE3")) {
+		//	loadEE3Values();
+		//}
 	}
 
 
@@ -104,7 +104,7 @@ public class Compatibility {
 		// ThaumcraftApi.registerObjectTag(new ItemStack(ChiselBlocks.cobblestoneWall, 1, OreDictionary.WILDCARD_VALUE), (new AspectList()).add(Aspect.ENTROPY, 1).add(Aspect.EARTH, 1));
 	}
 
-	private static void loadEE3Values() {
+	/*private static void loadEE3Values() {
 		for (String groupName : Carving.chisel.getSortedGroupNames()){
 			ICarvingGroup group = Carving.chisel.getGroup(groupName);
 			List<ItemStack> baseStacks = new ArrayList<ItemStack>();
@@ -133,6 +133,8 @@ public class Compatibility {
 				}
 			}
 		}
+	}
+	*/
 //		FMLLog.log(Chisel.MOD_ID, Level.INFO, "[Chisel 2] Oooh is that Equivalent Exchange I see?");
 //		EnergyValueRegistryProxy.addPreAssignedEnergyValue(new ItemStack(ChiselItems.ballomoss, 1), 16);
 //
@@ -277,5 +279,4 @@ public class Compatibility {
 //				EnergyValueRegistryProxy.addPreAssignedEnergyValue(new ItemStack(ChiselBlocks.brickCustom, 1, x), 256);
 //			}
 //		}
-	}
 }
