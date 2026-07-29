@@ -2,6 +2,7 @@ package team.chisel.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import team.chisel.Chisel;
 import team.chisel.carving.Carving;
 import team.chisel.item.ItemCarvable;
 
@@ -31,7 +32,7 @@ public class CarvableStairsMaker {
 			blocks[i] = creator == null ? new BlockCarvableStairs(blockBase, i * 2, carverHelper) : creator.create(blockBase, i * 2, carverHelper);
 
 			blocks[i].setBlockName("chisel." + n).setCreativeTab(ChiselTabs.tabStairChiselBlocks);
-			GameRegistry.registerBlock(blocks[i], ItemCarvable.class, n);
+			Chisel.proxy.blockRegister(blocks[i], ItemCarvable.class, n);
 
 			for (int meta = 0; meta < 2 && i * 2 + meta < carverHelper.infoList.size(); meta++) {
 				Carving.chisel.addVariation(name, CarvingUtils.getDefaultVariationFor(blocks[i], meta * 8, i));

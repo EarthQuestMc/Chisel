@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.oredict.OreDictionary;
+import team.chisel.Chisel;
 import team.chisel.ctmlib.ISubmapManager;
 
 import com.cricketcraft.chisel.api.ChiselAPIProps;
@@ -21,7 +22,6 @@ import com.cricketcraft.chisel.api.FMPIMC;
 import com.cricketcraft.chisel.api.rendering.TextureType;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -167,7 +167,7 @@ public class CarvableHelper {
 
 	void registerBlock(Block block, String name, Class<? extends ItemBlock> cl) {
 		block.setBlockName("chisel." + name);
-		GameRegistry.registerBlock(block, cl, name);
+		Chisel.proxy.blockRegister(block, cl, name);
 	}
 
 	public void registerAll(Block block, String name, Class<? extends ItemBlock> cl) {

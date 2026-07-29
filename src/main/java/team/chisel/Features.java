@@ -219,7 +219,7 @@ public enum Features {
 		@Override
 		void addBlocks() {
 			Block autoChisel = new BlockAutoChisel().setBlockTextureName(Chisel.MOD_ID + ":autoChisel/autoChisel").setCreativeTab(ChiselTabs.tabChisel).setBlockName("chisel.autoChisel");
-			GameRegistry.registerBlock(autoChisel, "autoChisel");
+			Chisel.proxy.blockRegister(autoChisel, "autoChisel");
 		}
 
 		@Override
@@ -234,7 +234,7 @@ public enum Features {
 		@Override
 		void addItems() {
 			ItemUpgrade upgrade = (ItemUpgrade) new ItemUpgrade("upgrade").setCreativeTab(ChiselTabs.tabChisel);
-			GameRegistry.registerItem(upgrade, "upgrade");
+			Chisel.proxy.itemRegister(upgrade, "upgrade");
 		}
 
 		@Override
@@ -254,7 +254,7 @@ public enum Features {
 		void addItems() {
 			ItemBallOMoss ballomoss = (ItemBallOMoss) new ItemBallOMoss().setTextureName("Chisel:ballomoss").setCreativeTab(ChiselTabs.tabChisel);
 			EntityRegistry.registerModEntity(EntityBallOMoss.class, "BallOMoss", 2, Chisel.instance, 40, 1, true);
-			GameRegistry.registerItem(ballomoss, "ballomoss");
+			Chisel.proxy.itemRegister(ballomoss, "ballomoss");
 		}
 
 		@Override
@@ -461,9 +461,9 @@ public enum Features {
 			ItemChisel chisel = (ItemChisel) new ItemChisel(ItemChisel.ChiselType.IRON).setCreativeTab(ChiselTabs.tabChisel);
 			ItemChisel diamondChisel = (ItemChisel) new ItemChisel(ItemChisel.ChiselType.DIAMOND).setCreativeTab(ChiselTabs.tabChisel);
 			ItemChisel obsidianChisel = (ItemChisel) new ItemChisel(ItemChisel.ChiselType.OBSIDIAN).setCreativeTab(ChiselTabs.tabChisel);
-			GameRegistry.registerItem(chisel, "chisel");
-			GameRegistry.registerItem(diamondChisel, "diamondChisel");
-			GameRegistry.registerItem(obsidianChisel, "obsidianChisel");
+			Chisel.proxy.itemRegister(chisel, "chisel");
+			Chisel.proxy.itemRegister(diamondChisel, "diamondChisel");
+			Chisel.proxy.itemRegister(obsidianChisel, "obsidianChisel");
 		}
 
 		@Override
@@ -499,7 +499,7 @@ public enum Features {
 		void addItems() {
 			ItemCloudInABottle itemCloudInABottle = (ItemCloudInABottle) new ItemCloudInABottle().setTextureName("Chisel:cloudinabottle-x").setCreativeTab(ChiselTabs.tabChisel);
 			EntityRegistry.registerModEntity(EntityCloudInABottle.class, "CloudInABottle", 1, Chisel.instance, 40, 1, true);
-			GameRegistry.registerItem(itemCloudInABottle, "cloudinabottle");
+			Chisel.proxy.itemRegister(itemCloudInABottle, "cloudinabottle");
 		}
 
 		@Override
@@ -1323,7 +1323,7 @@ public enum Features {
 				jackolantern[metadata] = (BlockCarvablePumpkin) new BlockCarvablePumpkin(true).setCreativeTab(ChiselTabs.tabOtherChiselBlocks).setHardness(1.0F).setBlockName("litpumpkin")
 						.setCreativeTab(ChiselTabs.tabOtherChiselBlocks).setLightLevel(1.0f);
 				jackolantern[metadata].setInformation("pumpkin/pumpkin_face_" + (metadata + 1) + "_on");
-				GameRegistry.registerBlock(jackolantern[metadata], ItemCarvablePumpkin.class, ("jackolantern" + (metadata + 1)));
+				Chisel.proxy.blockRegister(jackolantern[metadata], ItemCarvablePumpkin.class, ("jackolantern" + (metadata + 1)));
 				Carving.chisel.addVariation("jackolantern", jackolantern[metadata], 0, (metadata + 1));
 			}
 			Carving.chisel.addVariation("jackolantern", Blocks.lit_pumpkin, 0, 0);
@@ -2001,7 +2001,7 @@ public enum Features {
 				pumpkin[metadata] = (BlockCarvablePumpkin) new BlockCarvablePumpkin(false).setCreativeTab(ChiselTabs.tabOtherChiselBlocks).setHardness(1.0F).setBlockName("pumpkin")
 						.setCreativeTab(ChiselTabs.tabOtherChiselBlocks);
 				pumpkin[metadata].setInformation("pumpkin/pumpkin_face_" + (metadata + 1) + "_off");
-				GameRegistry.registerBlock(pumpkin[metadata], ItemCarvablePumpkin.class, "pumpkin" + (metadata + 1));
+				Chisel.proxy.blockRegister(pumpkin[metadata], ItemCarvablePumpkin.class, "pumpkin" + (metadata + 1));
 				Carving.chisel.addVariation("pumpkin", pumpkin[metadata], 0, (metadata + 1));
 			}
 			Carving.chisel.addVariation("pumpkin", Blocks.pumpkin, 0, 0);
@@ -2333,7 +2333,7 @@ public enum Features {
 		void addItems() {
 			ItemSmashingRock smashingrock = (ItemSmashingRock) new ItemSmashingRock().setTextureName("Chisel:smashingrock").setCreativeTab(ChiselTabs.tabChisel);
 			EntityRegistry.registerModEntity(EntitySmashingRock.class, "SmashingRock", 3, Chisel.instance, 40, 1, true);
-			GameRegistry.registerItem(smashingrock, "smashingrock");
+			Chisel.proxy.itemRegister(smashingrock, "smashingrock");
 		}
 
 		@Override
@@ -2349,7 +2349,7 @@ public enum Features {
 		void addBlocks() {
 			BlockSnakestone sand_snakestone = (BlockSnakestone) new BlockSnakestone("Chisel:snakestone/sandsnake/").setCreativeTab(ChiselTabs.tabStoneChiselBlocks).setBlockName(
 					"chisel.snakestoneSand");
-			GameRegistry.registerBlock(sand_snakestone, ItemCarvable.class, "sand_snakestone");
+			Chisel.proxy.blockRegister(sand_snakestone, ItemCarvable.class, "sand_snakestone");
 			// TODO- eat me!
 			// LanguageRegistry.addName(new ItemStack(sandSnakestone, 1, 1),
 			// "Sandstone snake block head");
@@ -2366,7 +2366,7 @@ public enum Features {
 		@Override
 		void addBlocks() {
 			BlockSnakestone stone_snakestone = (BlockSnakestone) new BlockSnakestone("Chisel:snakestone/snake/").setBlockName("chisel.snakestoneStone").setCreativeTab(ChiselTabs.tabStoneChiselBlocks);
-			GameRegistry.registerBlock(stone_snakestone, ItemCarvable.class, "stone_snakestone");
+			Chisel.proxy.blockRegister(stone_snakestone, ItemCarvable.class, "stone_snakestone");
 			// LanguageRegistry.addName(new ItemStack(snakestone, 1, 1),
 			// "Stone snake block head");
 			// LanguageRegistry.addName(new ItemStack(snakestone, 1, 13),
@@ -2383,7 +2383,7 @@ public enum Features {
 		void addBlocks() {
 			BlockSnakestoneObsidian obsidian_snakestone = (BlockSnakestoneObsidian) new BlockSnakestoneObsidian("Chisel:snakestone/obsidian/").setBlockName("chisel.obsidianSnakestone")
 					.setHardness(50.0F).setResistance(2000.0F);
-			GameRegistry.registerBlock(obsidian_snakestone, ItemCarvable.class, "obsidian_snakestone");
+			Chisel.proxy.blockRegister(obsidian_snakestone, ItemCarvable.class, "obsidian_snakestone");
 			Carving.chisel.addVariation("obsidian", obsidian_snakestone, 1, 100);
 			Carving.chisel.addVariation("obsidian", obsidian_snakestone, 13, 101);
 			// Carving.chisel.registerOre("obsidianSnakestone",
@@ -2681,9 +2681,9 @@ public enum Features {
 					t.disableParticles();
 				}
 				if (Loader.isModLoaded("ForgeMultipart")) {
-					GameRegistry.registerBlock(t, ItemBlockChiselTorchPart.class, name, t);
+					Chisel.proxy.blockRegister(t, ItemBlockChiselTorchPart.class, name, t);
 				} else {
-					GameRegistry.registerBlock(t, name);
+					Chisel.proxy.blockRegister(t, name);
 				}
 				Carving.chisel.addVariation("torch", t, 0, (type + 1));
 				torches[type] = t;
@@ -3104,6 +3104,6 @@ public enum Features {
 	private static void registerSlabTop(Block bottom, Block top) {
 		String name = Block.blockRegistry.getNameForObject(bottom);
 		name = name.substring(name.indexOf(':') + 1) + "_top";
-		GameRegistry.registerBlock(top, ItemCarvableSlab.class, name);
+		Chisel.proxy.blockRegister(top, ItemCarvableSlab.class, name);
 	}
 }
