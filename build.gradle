@@ -23,24 +23,11 @@ plugins {
 apply plugin: 'forge'
 apply plugin: 'maven-publish'
 
-import org.ajoberstar.grgit.Grgit
-
-def repo = Grgit.open(project.file('.'))
-project.ext.gitHash = repo.log().find().abbreviatedId
-def branchname = repo.branch.getCurrent().fullName
-if (branchname.contains('HEAD')) {
-    branchname = System.getenv("GIT_BRANCH")
-}
-branchname = branchname.substring(branchname.lastIndexOf('/') + 1)
-
 boolean dev = System.getenv("RELEASE") == null || System.getenv("RELEASE").equalsIgnoreCase("false")
 
-ext.buildnumber = 0
-project.buildnumber = System.getenv('BUILD_NUMBER') == null ? "CUSTOM" : System.getenv('BUILD_NUMBER')
-
-version = dev ? "${branchname}-${buildnumber}-${project.ext.gitHash}" : "${mod_version}.${buildnumber}"
+version = "${mod_version}"
 group = "team.chisel" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Chisel"
+archivesBaseName = "Chisel-${minecraft_version}"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
@@ -132,6 +119,23 @@ task deobfJar(type: Jar) {
     classifier = 'deobf'
 }
 
+// Deobfuscated jar, shaded like the release one, meant to be dropped in a dev workspace
+task devJar(type: Jar) {
+    from sourceSets.main.output
+
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)) {
+            exclude 'META-INF', 'META-INF/**', '*.info'
+        }
+    }
+
+    manifest {
+        attributes 'FMLAT': 'chisel_compile_at.cfg'
+    }
+
+    classifier = 'dev'
+}
+
 // Create API jar with sources and compiled files
 task apiJar(type: Jar) {
     from sourceSets.main.allSource
@@ -148,6 +152,7 @@ task sourcesJar(type: Jar) {
 
 artifacts {
     archives deobfJar
+    archives devJar
     archives sourcesJar
     archives apiJar
 }
@@ -158,6 +163,7 @@ publishing {
         mavenJava(MavenPublication) {
             artifact jar
             artifact deobfJar
+            artifact devJar
             artifact sourcesJar
             artifact apiJar
         }
@@ -221,6 +227,7 @@ curseforge {
             displayName = "Chisel - ${version}"
         }
         addArtifact deobfJar
+        addArtifact devJar
         addArtifact sourcesJar
         addArtifact(apiJar) {
             relations {}
