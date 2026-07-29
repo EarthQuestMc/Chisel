@@ -15,7 +15,6 @@ import team.chisel.carving.Carving;
 import team.chisel.compat.Compatibility;
 import team.chisel.compat.IMCHandler;
 import team.chisel.compat.fmp.FMPCompat;
-import team.chisel.config.ConfigRegistry;
 import team.chisel.config.Configurations;
 import team.chisel.entity.EntityChiselSnowman;
 import team.chisel.init.ChiselBlocks;
@@ -131,7 +130,6 @@ public class Chisel {
 		Configurations.config.load();
 		Configurations.refreshConfig();
 
-		ConfigRegistry.init(new File(event.getModConfigurationDirectory(), "chisel_registry.cfg"));
 		proxy.registryInit();
 
 		TabsInit.preInit();

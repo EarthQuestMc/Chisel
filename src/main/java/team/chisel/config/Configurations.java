@@ -59,6 +59,13 @@ public class Configurations {
 
 	public static boolean fullBlockConcrete;
 
+	/** Categories holding the static ids handed out to Chisel blocks and items. */
+	public static final String CATEGORY_BLOCK_IDS = "id.blocks";
+	public static final String CATEGORY_ITEM_IDS = "id.items";
+
+	public static int startBlockID;
+	public static int startItemID;
+
 	public static boolean refreshConfig() {
 
 		String category;
@@ -121,6 +128,11 @@ public class Configurations {
 				"The lowest harvest level of the tool able to break the road lines (requires useRoadLineTool to be true to take effect) (0 = Wood/Gold, 1 = Stone, 2 = Iron, 3 = Diamond) Default: 0")
 				.getInt();
 
+		/* id */
+		category = "id";
+		startBlockID = config.get(category, "startBlockID", 450, "First id handed out to Chisel blocks (0-4095). The ids themselves live in id.blocks.").getInt(450);
+		startItemID = config.get(category, "startItemID", 4100, "First id handed out to Chisel items (4096-31999). The ids themselves live in id.items.").getInt(4100);
+
 		/* hexColors */
 		category = "hexColors";
 
@@ -137,10 +149,14 @@ public class Configurations {
 			}
 		}
 
-		if (config.hasChanged()) {
+		save();
+		return true;
+	}
+
+	public static void save() {
+		if (config != null && config.hasChanged()) {
 			config.save();
 		}
-		return true;
 	}
 
 	public static boolean featureEnabled(Features feature) {

@@ -6,7 +6,7 @@ import team.chisel.Chisel;
 import team.chisel.block.tileentity.TileEntityAutoChisel;
 import team.chisel.block.tileentity.TileEntityCarvableBeacon;
 import team.chisel.block.tileentity.TileEntityPresent;
-import team.chisel.config.ConfigRegistry;
+import team.chisel.config.Configurations;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -24,8 +24,8 @@ public class CommonProxy {
 	private int registryBlockID;
 
 	public void registryInit() {
-		this.registryBlockID = ConfigRegistry.StartBlockID;
-		this.registryItemID = ConfigRegistry.StartItemID;
+		this.registryBlockID = Configurations.startBlockID;
+		this.registryItemID = Configurations.startItemID;
 	}
 
 	public void registerTileEntities() {
@@ -53,9 +53,9 @@ public class CommonProxy {
 			this.registryItemID++;
 		}
 
-		int itemID = ConfigRegistry.config.get("items", name, this.registryItemID).getInt();
+		int itemID = Configurations.config.get(Configurations.CATEGORY_ITEM_IDS, name, this.registryItemID).getInt();
 		if (itemID == this.registryItemID) {
-			ConfigRegistry.save();
+			Configurations.save();
 			this.registryItemID++;
 		}
 
@@ -73,9 +73,9 @@ public class CommonProxy {
 			this.registryBlockID++;
 		}
 
-		int blockID = ConfigRegistry.config.get("blocks", name, this.registryBlockID).getInt();
+		int blockID = Configurations.config.get(Configurations.CATEGORY_BLOCK_IDS, name, this.registryBlockID).getInt();
 		if (blockID == this.registryBlockID) {
-			ConfigRegistry.save();
+			Configurations.save();
 			this.registryBlockID++;
 		}
 
