@@ -131,7 +131,7 @@ public class Configurations {
 		/* id */
 		category = "id";
 		startBlockID = config.get(category, "startBlockID", 450, "First id handed out to Chisel blocks (0-4095). The ids themselves live in id.blocks.").getInt(450);
-		startItemID = config.get(category, "startItemID", 4100, "First id handed out to Chisel items (4096-31999). The ids themselves live in id.items.").getInt(4100);
+		startItemID = config.get(category, "startItemID", 7133, "First id handed out to Chisel items (7133-31999). The ids themselves live in id.items.").getInt(4100);
 
 		/* hexColors */
 		category = "hexColors";

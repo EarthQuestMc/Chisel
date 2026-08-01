@@ -97,8 +97,6 @@ public class CommonProxy {
 			}
 		}
 
-		// The ItemBlock has to be registered first, otherwise FML allocates the block id itself and our static id is
-		// only used for the item.
 		if (itemBlock != null) {
 			GameData.getItemRegistry().addObject(blockID, name, itemBlock);
 		}
