@@ -90,6 +90,9 @@ public class ClientProxy extends CommonProxy {
 		if (Features.CHISEL.enabled()) {
 			MinecraftForgeClient.registerItemRenderer(ChiselItems.chisel, renderer);
 			MinecraftForgeClient.registerItemRenderer(ChiselItems.diamondChisel, renderer);
+			MinecraftForgeClient.registerItemRenderer(ChiselItems.obsidianChisel, renderer);
+			if (Features.CHISEL_112_ITEMS.enabled())
+				MinecraftForgeClient.registerItemRenderer(ChiselItems.hitechChisel, renderer);
 		}
 
 //		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ChiselBlocks.antiBlock), new SubmapManagerAntiblock.AntiblockItemRenderer());

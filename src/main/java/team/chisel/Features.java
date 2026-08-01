@@ -28,6 +28,8 @@ import team.chisel.item.ItemCarvableSlab;
 import team.chisel.item.ItemCloudInABottle;
 import team.chisel.item.ItemSmashingRock;
 import team.chisel.item.ItemUpgrade;
+import team.chisel.item.ItemOffsetTool;
+import team.chisel.item.ItemOffsetTool;
 import team.chisel.item.chisel.ItemChisel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -2956,7 +2958,261 @@ public enum Features {
 		boolean needsMetaRecipes() {
 			return true;
 		}
+	},
+
+	// Chisel 1.12.2 content is appended to preserve all historical 1.7.10 IDs.
+	BASALT {
+		@Override
+		void addBlocks() {
+			BlockCarvable[] blocks = register112SplitBlock("basalt", "basalt", "basalt", Material.rock, 1.5F, 10.0F, STONE_112_VARIATIONS_WITH_RAW);
+			register112Ore(blocks, "basalt", "stoneBasalt");
+		}
+	},
+
+	BRICKS {
+		@Override
+		void addBlocks() {
+			Carving.chisel.addVariation("bricks", Blocks.brick_block, 0, -1);
+			register112SplitBlock("bricks", "bricks", "bricks", Material.rock, 2.0F, 10.0F, BRICKS_112_VARIATIONS);
+		}
+	},
+
+	BROWNSTONE {
+		@Override
+		void addBlocks() {
+			BlockConcrete brownstone = (BlockConcrete) new BlockConcrete().setCreativeTab(ChiselTabs.tabStoneChiselBlocks).setStepSound(Block.soundTypeStone).setHardness(1.0F);
+			for (int i = 0; i < BROWNSTONE_112_VARIATIONS.length; i++) {
+				brownstone.carverHelper.addVariation("tile.brownstone." + i + ".desc", i, "concrete/" + BROWNSTONE_112_VARIATIONS[i], i);
+			}
+			brownstone.carverHelper.registerAll(brownstone, "brownstone");
+		}
+
+		@Override
+		void addRecipes() {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ChiselBlocks.brownstone, 4), " S ", "SCS", " S ", 'S', "sandstone", 'C', Items.clay_ball));
+		}
+	},
+
+	CHARCOAL {
+		@Override
+		void addBlocks() {
+			BlockCarvable[] blocks = register112SplitBlock("block_charcoal", "blockCharcoal", "coal/charcoal", Material.rock, 5.0F, 10.0F, COAL_112_VARIATIONS);
+			register112Ore(blocks, "blockCharcoal", "blockCharcoal");
+			OreDictionary.registerOre("charcoal", new ItemStack(Items.coal, 1, 1));
+		}
+
+		@Override
+		void addRecipes() {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ChiselBlocks.block_charcoal2, 1, 1), "XXX", "XXX", "XXX", 'X', "charcoal"));
+		}
+	},
+
+	COAL {
+		@Override
+		void addBlocks() {
+			BlockCarvable[] blocks = register112SplitBlock("block_coal", "blockCoal", "coal/coal", Material.rock, 5.0F, 10.0F, COAL_112_VARIATIONS);
+			register112Ore(blocks, "blockCoal", "blockCoal");
+			Carving.chisel.addVariation("blockCoal", Blocks.coal_block, 0, -1);
+		}
+
+		@Override
+		void addRecipes() {
+			GameRegistry.addShapelessRecipe(new ItemStack(Items.coal, 9), new ItemStack(Blocks.coal_block));
+		}
+	},
+
+	COAL_COKE {
+		@Override
+		void addBlocks() {
+			BlockCarvable[] blocks = register112SplitBlock("block_coal_coke", "blockCoalCoke", "coal/coalcoke", Material.rock, 5.0F, 10.0F, COAL_112_VARIATIONS);
+			register112Ore(blocks, "blockCoalCoke", "blockCoalCoke");
+			register112Ore(blocks, "blockCoalCoke", "blockFuelCoke");
+		}
+	},
+
+	COBALT {
+		@Override
+		void addBlocks() {
+			register112Metal("blockcobalt", "blockCobalt", "cobalt");
+		}
+	},
+
+	ELECTRUM {
+		@Override
+		void addBlocks() {
+			register112Metal("blockelectrum", "blockElectrum", "electrum");
+		}
+	},
+
+	INVAR {
+		@Override
+		void addBlocks() {
+			register112Metal("blockinvar", "blockInvar", "invar");
+		}
+	},
+
+	NICKEL {
+		@Override
+		void addBlocks() {
+			register112Metal("blocknickel", "blockNickel", "nickel");
+		}
+	},
+
+	PLATINUM {
+		@Override
+		void addBlocks() {
+			register112Metal("blockplatinum", "blockPlatinum", "platinum");
+		}
+	},
+
+	HARDENED_CLAY {
+		@Override
+		void addBlocks() {
+			Carving.chisel.addVariation("hardenedclay", Blocks.hardened_clay, 0, -1);
+			BlockCarvable[] blocks = register112SplitBlock("hardenedclay", "hardenedclay", "hardenedclay", Material.clay, 1.25F, 7.0F, STONE_112_VARIATIONS);
+			register112Ore(blocks, "hardenedclay", "hardenedClay");
+		}
+	},
+
+	PRISMARINE {
+		@Override
+		void addBlocks() {
+			BlockCarvable[] blocks = register112SplitBlock("prismarine", "prismarine", "prismarineanim", Material.rock, 1.5F, 10.0F, PRISMARINE_112_VARIATIONS);
+			register112Ore(blocks, "prismarine", "prismarine");
+			register112Ore(blocks, "prismarine", "prismarineBrick");
+			register112Ore(blocks, "prismarine", "prismarineDark");
+		}
+	},
+
+	SANDSTONE_RED {
+		@Override
+		void addBlocks() {
+			BlockCarvable[] blocks = register112SplitBlock("sandstonered", "sandstonered", "sandstonered", Material.rock, 0.8F, 10.0F, RED_SANDSTONE_112_VARIATIONS);
+			register112Ore(blocks, "sandstonered", "sandstone");
+		}
+	},
+
+	SANDSTONERED_SCRIBBLES(SANDSTONE_RED) {
+		@Override
+		void addBlocks() {
+			BlockCarvable[] blocks = register112SplitBlock("sandstonered_scribbles", "sandstonered", "sandstonered-scribbles", Material.rock, 0.8F, 10.0F,
+					RED_SANDSTONE_SCRIBBLES_112_VARIATIONS);
+			register112Ore(blocks, "sandstonered", "sandstone");
+		}
+	},
+
+	WOOL {
+		@Override
+		void addBlocks() {
+			for (int color = 0; color < sGNames.length; color++) {
+				String name = sGNames[color].replaceAll(" ", "").toLowerCase();
+				BlockCarvable block = (BlockCarvable) new BlockCarvable(Material.cloth).setCreativeTab(ChiselTabs.tabOtherChiselBlocks).setStepSound(Block.soundTypeCloth).setHardness(0.8F);
+				Carving.chisel.addVariation("wool_" + name, Blocks.wool, 15 - color, -1);
+				block.carverHelper.addVariation("tile.wool_" + name + ".0.desc", 0, "wool/legacy/" + name);
+				block.carverHelper.addVariation("tile.wool_" + name + ".1.desc", 1, "wool/llama/" + name);
+				block.carverHelper.registerAll(block, "wool_" + name);
+				OreDictionary.registerOre("blockWool", new ItemStack(block, 1, 0));
+				OreDictionary.registerOre("blockWool", new ItemStack(block, 1, 1));
+				Blocks.fire.setFireInfo(block, 30, 60);
+				ChiselBlocks.wool[color] = block;
+			}
+		}
+	},
+
+	CHISEL_112_ITEMS(CHISEL) {
+		@Override
+		void addItems() {
+			ItemChisel hitechChisel = (ItemChisel) new ItemChisel(ItemChisel.ChiselType.HITECH).setCreativeTab(ChiselTabs.tabChisel);
+			ItemOffsetTool offsettool = (ItemOffsetTool) new ItemOffsetTool().setCreativeTab(ChiselTabs.tabChisel);
+			Chisel.proxy.itemRegister(hitechChisel, "hitechChisel");
+			Chisel.proxy.itemRegister(offsettool, "offsettool");
+		}
+
+		@Override
+		void addRecipes() {
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ChiselItems.hitechChisel), ChiselItems.diamondChisel, "dustRedstone", "ingotGold"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ChiselItems.offsettool), "-o", "|-", 'o', Items.ender_pearl, '|', "stickWood", '-', "ingotIron"));
+		}
 	};
+
+	private static final String[] STONE_112_VARIATIONS = { "cracked", "bricks-soft", "bricks-cracked", "bricks-triple", "bricks-encased", "braid", "array", "tiles-large",
+			"tiles-small", "chaotic-medium", "chaotic-small", "dent", "french-1", "french-2", "jellybean", "layers", "mosaic", "ornate", "panel", "road", "slanted", "zag",
+			"circular", "weaver", "bricks-chaotic", "cuts", "", "", "", "", "", "", "bricks-solid", "bricks-small", "circular", "tiles-medium", "pillar", "twisted", "prism" };
+
+	private static final String[] STONE_112_VARIATIONS_WITH_RAW = { "cracked", "bricks-soft", "bricks-cracked", "bricks-triple", "bricks-encased", "braid", "array",
+			"tiles-large", "tiles-small", "chaotic-medium", "chaotic-small", "dent", "french-1", "french-2", "jellybean", "layers", "mosaic", "ornate", "panel", "road",
+			"slanted", "zag", "circular", "weaver", "bricks-chaotic", "cuts", "", "", "", "", "", "", "bricks-solid", "bricks-small", "circular", "tiles-medium", "pillar",
+			"twisted", "prism", "raw" };
+
+	private static final String[] BRICKS_112_VARIATIONS = { "cracked", "bricks-soft", "bricks-cracked", "bricks-triple", "bricks-encased", "braid", "array", "tiles-large",
+			"tiles-small", "chaotic-medium", "chaotic-small", "dent", "french-1", "french-2", "jellybean", "layers", "mosaic", "ornate", "panel", "road", "slanted", "zag",
+			"circular", "weaver", "bricks-chaotic", "cuts", "", "", "", "", "", "", "bricks-solid", "circular", "tiles-medium", "pillar", "twisted", "prism" };
+
+	private static final String[] COAL_112_VARIATIONS = { "cracked", "bricks-soft", "bricks-cracked", "bricks-triple", "bricks-encased", "braid", "array", "tiles-large",
+			"tiles-small", "chaotic-medium", "chaotic-small", "dent", "french-1", "french-2", "jellybean", "layers", "mosaic", "ornate", "panel", "road", "slanted", "zag",
+			"circular", "weaver", "bricks-solid", "bricks-small", "circular", "tiles-medium", "pillar", "twisted", "prism", "bricks-chaotic", "cuts", "raw" };
+
+	private static final String[] PRISMARINE_112_VARIATIONS = { "cracked", "bricks-soft", "bricks-cracked", "bricks-triple", "bricks-encased", "braid", "array", "tiles-large",
+			"tiles-small", "chaotic-medium", "chaotic-small", "dent", "french-1", "french-2", "jellybean", "layers", "mosaic", "ornate", "panel", "road", "slanted", "zag",
+			"circular", "weaver", "bricks-chaotic", "cuts", "", "", "", "", "", "", "bricks-solid", "bricks-small", "circular", "tiles-medium", "pillar", "twisted" };
+
+	private static final String[] RED_SANDSTONE_112_VARIATIONS = { "cracked", "bricks-soft", "bricks-cracked", "bricks-triple", "bricks-encased", "braid", "array",
+			"tiles-large", "tiles-small", "chaotic-medium", "chaotic-small", "dent", "french-1", "french-2", "jellybean", "layers", "mosaic", "ornate", "panel", "road",
+			"slanted", "zag", "circular", "weaver", "bricks-chaotic", "cuts", "", "", "", "", "", "", "bricks-solid", "bricks-small", "circular", "tiles-medium", "pillar",
+			"twisted", "prism", "seamless" };
+
+	private static final String[] BROWNSTONE_112_VARIATIONS = { "default", "block", "doubleslab", "blocks", "weathered", "weathered-block", "weathered-doubleslab",
+			"weathered-blocks", "weathered-half", "weathered-block-half" };
+
+	private static final String[] RED_SANDSTONE_SCRIBBLES_112_VARIATIONS = { "scribbles-0", "scribbles-1", "scribbles-2", "scribbles-3", "scribbles-4", "scribbles-5",
+			"scribbles-6", "scribbles-7", "scribbles-8", "scribbles-9", "scribbles-10", "scribbles-11", "scribbles-12", "scribbles-13", "scribbles-14", "scribbles-15" };
+
+	private static final String[] METAL_112_VARIATIONS = { "caution", "crate", "thermal", "machine", "badgreggy", "bolted", "scaffold" };
+
+	private static BlockCarvable[] register112SplitBlock(String registryName, String group, String textureFolder, Material material, float hardness, float resistance,
+			String[] variations) {
+		BlockCarvable[] blocks = new BlockCarvable[(variations.length + 15) / 16];
+		for (int blockIndex = 0; blockIndex < blocks.length; blockIndex++) {
+			BlockCarvable block = (BlockCarvable) new BlockCarvable(material).setCreativeTab(ChiselTabs.tabStoneChiselBlocks).setStepSound(Block.soundTypeStone)
+					.setHardness(hardness).setResistance(resistance);
+			for (int metadata = 0; metadata < 16; metadata++) {
+				int globalIndex = blockIndex * 16 + metadata;
+				if (globalIndex >= variations.length)
+					break;
+				String variation = variations[globalIndex];
+				if (variation.length() == 0)
+					continue;
+				block.carverHelper.addVariation("tile." + registryName + "." + globalIndex + ".desc", metadata, textureFolder + "/" + variation, globalIndex);
+			}
+			String splitName = registryName + (blockIndex == 0 ? "" : blockIndex);
+			block.carverHelper.registerBlock(block, splitName);
+			block.carverHelper.registerVariations(group);
+			blocks[blockIndex] = block;
+		}
+		return blocks;
+	}
+
+	private static BlockCarvable register112Metal(String registryName, String group, String metal) {
+		BlockCarvable block = (BlockCarvable) new BlockBeaconBase(Material.iron).setCreativeTab(ChiselTabs.tabModdedChiselBlocks).setStepSound(Block.soundTypeMetal)
+				.setHardness(5.0F).setResistance(10.0F);
+		for (int metadata = 0; metadata < METAL_112_VARIATIONS.length; metadata++) {
+			block.carverHelper.addVariation("tile.metal112." + metadata + ".desc", metadata, "metals/" + metal + "/" + METAL_112_VARIATIONS[metadata], metadata);
+		}
+		block.carverHelper.registerBlock(block, registryName);
+		block.carverHelper.registerVariations(group);
+		register112Ore(new BlockCarvable[] { block }, group, group);
+		return block;
+	}
+
+	private static void register112Ore(BlockCarvable[] blocks, String group, String oreName) {
+		for (BlockCarvable block : blocks) {
+			for (int metadata = 0; metadata < 16; metadata++) {
+				if (block.carverHelper.getVariation(metadata) != null)
+					OreDictionary.registerOre(oreName, new ItemStack(block, 1, metadata));
+			}
+		}
+		Carving.chisel.registerOre(group, oreName);
+	}
 
 	private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple", "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow",
 			"dyeLightBlue", "dyeMagenta", "dyeOrange", "dyeWhite" };

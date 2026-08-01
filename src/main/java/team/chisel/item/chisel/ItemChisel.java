@@ -30,7 +30,8 @@ public class ItemChisel extends Item implements IChiselItem {
 	public enum ChiselType {
 		IRON(Configurations.ironChiselMaxDamage, Configurations.ironChiselAttackDamage),
 		DIAMOND(Configurations.diamondChiselMaxDamage, Configurations.diamondChiselAttackDamage),
-		OBSIDIAN(Configurations.obsidianChiselMaxDamage, Configurations.obsidianChiselAttackDamage);
+		OBSIDIAN(Configurations.obsidianChiselMaxDamage, Configurations.obsidianChiselAttackDamage),
+		HITECH(Configurations.diamondChiselMaxDamage, Configurations.diamondChiselAttackDamage);
 
 		final int maxDamage;
 		final int attackDamage;
@@ -69,6 +70,7 @@ public class ItemChisel extends Item implements IChiselItem {
 	public boolean getIsRepairable(ItemStack damagedItem, ItemStack repairMaterial) {
 		switch (type) {
 		case DIAMOND:
+		case HITECH:
 			return repairMaterial.getItem().equals(Items.diamond);
 		case IRON:
 			return repairMaterial.getItem().equals(Items.iron_ingot);
@@ -93,11 +95,11 @@ public class ItemChisel extends Item implements IChiselItem {
 		String lc2 = I18n.format(base + "lc2");
 		String modes = I18n.format(base + "modes");
 		list.add(gui);
-		if (type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN || Configurations.ironChiselCanLeftClick) {
+		if (type != ChiselType.IRON || Configurations.ironChiselCanLeftClick) {
 			list.add(lc1);
 			list.add(lc2);
 		}
-		if (type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN || Configurations.ironChiselHasModes) {
+		if (type != ChiselType.IRON || Configurations.ironChiselHasModes) {
 			list.add("");
 			list.add(modes);
 		}
@@ -139,11 +141,11 @@ public class ItemChisel extends Item implements IChiselItem {
 
 	@Override
 	public boolean canChiselBlock(World world, EntityPlayer player, int x, int y, int z, Block block, int metadata) {
-		return type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN || Configurations.ironChiselCanLeftClick;
+		return type != ChiselType.IRON || Configurations.ironChiselCanLeftClick;
 	}
 
 	@Override
 	public boolean hasModes(ItemStack chisel) {
-		return type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN || Configurations.ironChiselHasModes;
+		return type != ChiselType.IRON || Configurations.ironChiselHasModes;
 	}
 }

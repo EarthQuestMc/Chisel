@@ -90,7 +90,8 @@ public final class ChiselBlocks {
 	public static final BlockCarvable copperblock = null;
 	public static final BlockCarvable bronzeblock = null;
 	public static final BlockCarvable aluminumblock = null;
-	public static BlockCarvableStairs[] aluminumStairs = new BlockCarvableStairs[8];
+	// Aluminum has six stair variants (two metadata values per registered block).
+	public static BlockCarvableStairs[] aluminumStairs = new BlockCarvableStairs[3];
 	public static final BlockCarvable leadblock = null;
 	public static final BlockCarvable silverblock = null;
 	public static final BlockCarvable steelblock = null;
@@ -129,6 +130,41 @@ public final class ChiselBlocks {
 
 	// 1.9... drull pls
 	public static final BlockCarvable purpur = null;
+
+	// Blocks backported from Chisel 1.12.2. Keep these declarations at the end so
+	// existing 1.7.10 registry IDs are not shifted.
+	public static final BlockCarvable basalt = null;
+	public static final BlockCarvable basalt1 = null;
+	public static final BlockCarvable basalt2 = null;
+	public static final BlockCarvable bricks = null;
+	public static final BlockCarvable bricks1 = null;
+	public static final BlockCarvable bricks2 = null;
+	public static final BlockConcrete brownstone = null;
+	public static final BlockCarvable block_charcoal = null;
+	public static final BlockCarvable block_charcoal1 = null;
+	public static final BlockCarvable block_charcoal2 = null;
+	public static final BlockCarvable block_coal = null;
+	public static final BlockCarvable block_coal1 = null;
+	public static final BlockCarvable block_coal2 = null;
+	public static final BlockCarvable block_coal_coke = null;
+	public static final BlockCarvable block_coal_coke1 = null;
+	public static final BlockCarvable block_coal_coke2 = null;
+	public static final BlockCarvable blockcobalt = null;
+	public static final BlockCarvable blockelectrum = null;
+	public static final BlockCarvable blockinvar = null;
+	public static final BlockCarvable blocknickel = null;
+	public static final BlockCarvable blockplatinum = null;
+	public static final BlockCarvable hardenedclay = null;
+	public static final BlockCarvable hardenedclay1 = null;
+	public static final BlockCarvable hardenedclay2 = null;
+	public static final BlockCarvable prismarine = null;
+	public static final BlockCarvable prismarine1 = null;
+	public static final BlockCarvable prismarine2 = null;
+	public static final BlockCarvable sandstonered = null;
+	public static final BlockCarvable sandstonered1 = null;
+	public static final BlockCarvable sandstonered2 = null;
+	public static final BlockCarvable sandstonered_scribbles = null;
+	public static BlockCarvable[] wool = new BlockCarvable[16];
 
 	private ChiselBlocks() {
 	}
